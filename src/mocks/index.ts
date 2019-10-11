@@ -1,7 +1,13 @@
-import { createUid } from "../utils";
-import { NormalizedTodos } from "../types";
+import { createUid } from '../utils';
+import { NormalizedTodos } from '../types';
 
-const randomStrings = ['Learn React', 'Use Typescript with React', 'Have Fun!!', "Use emoji's", 'Look at memes'];
+const randomStrings = [
+  'Learn React',
+  'Use Typescript with React',
+  'Have Fun!!',
+  "Use emoji's",
+  'Look at memes',
+];
 
 export const mockTodos = ((strings: string[]) => {
   const todos: NormalizedTodos = {};
@@ -10,8 +16,8 @@ export const mockTodos = ((strings: string[]) => {
     todos[uid] = {
       id: uid,
       text: str,
-      completed: false
+      completed: false,
     };
   });
   return todos;
-})(randomStrings)
+})(randomStrings);

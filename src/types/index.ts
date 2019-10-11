@@ -19,6 +19,6 @@ export interface Filter {
 }
 
 export interface TodoActionsType {
-  type: string,
-  data: string,
+  type: string;
+  data: string;
 }
