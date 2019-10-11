@@ -1,16 +1,13 @@
 import * as React from "react";
 import { ENTER_KEY, ADD_TODO_ACTION } from "../constants";
-import { TodoActionsType } from "../types";
+import { TodoContext } from "../TodoApp";
 
-interface AddTodoProps {
-  onNewTodo: React.Dispatch<TodoActionsType>;
-}
-
-const AddTodo: React.FC<AddTodoProps> = ({ onNewTodo }) => {
+const AddTodo: React.FC = () => {
+  const dipatchAction = React.useContext(TodoContext)
   const onEnterKey = (e: React.KeyboardEvent) => {
     const { value } = e.target as HTMLInputElement;
     if (e.keyCode !== ENTER_KEY || !value.trim()) return;
-    onNewTodo({
+    dipatchAction({
       type: ADD_TODO_ACTION,
       data: value,
     });

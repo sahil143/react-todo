@@ -10,9 +10,11 @@ import {
   getNoOfActiveTodo,
   TodoReducer
 } from "./utils";
-import { ToDo, NormalizedTodos, NormalizedState, Filter } from "./types";
+import { TodoActionsType } from "./types";
 import { ALL_FILTER } from "./constants";
 import { mockTodos } from "./mocks";
+
+ export const TodoContext = React.createContext((value: TodoActionsType) => {});
 
 const TodoApp = () => {
   const [state, dispatch] = React.useReducer(TodoReducer, {
@@ -24,19 +26,17 @@ const TodoApp = () => {
   const activeTodosNumber = getNoOfActiveTodo(todos);
   return (
     <div className="container p-3 w-50 border border-2">
-      <TodoHeader />
-      <AddTodo onNewTodo={dispatch} />
-      <TodoList
-        onCompleteTask={dispatch}
-        onDeleteTodo={dispatch}
-        todos={showTodo}
-      />
-      <TodoFooter
-        activeFilter={state.activeFilter}
-        leftTodos={activeTodosNumber}
-        onActiveFilter={dispatch}
-        onClearAll={dispatch}
-      />
+      <TodoContext.Provider value={dispatch} >
+        <TodoHeader />
+        <AddTodo />
+        <TodoList
+          todos={showTodo}
+        />
+        <TodoFooter
+          activeFilter={state.activeFilter}
+          leftTodos={activeTodosNumber}
+        />
+      </TodoContext.Provider>
     </div>
   );
 };

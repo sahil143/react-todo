@@ -1,11 +1,10 @@
 import * as React from "react";
-import { ToDo, TodoActionsType } from "../types";
+import { ToDo } from "../types";
 import { COMPLETE_TODO_ACTION, DELETE_TODO_ACTION } from "../constants";
+import { TodoContext } from "../TodoApp";
 
 interface TodoListProps {
   todos: ToDo[];
-  onDeleteTodo: React.Dispatch<TodoActionsType>
-  onCompleteTask: React.Dispatch<TodoActionsType>;
 }
 
 const completedStyles = {
@@ -14,10 +13,9 @@ const completedStyles = {
 }
 
 const TodoList: React.FC<TodoListProps> = ({
-  todos,
-  onDeleteTodo,
-  onCompleteTask
+  todos
 }) => {
+  const dipatchAction = React.useContext(TodoContext)
   return (
     <ul className="list-group m-3">
       {todos.map(todo => {
@@ -27,7 +25,7 @@ const TodoList: React.FC<TodoListProps> = ({
               className="m-3"
               type="checkbox"
               checked={todo.completed}
-              onChange={e => onCompleteTask({type: COMPLETE_TODO_ACTION, data: todo.id})}
+              onChange={e => dipatchAction({type: COMPLETE_TODO_ACTION, data: todo.id})}
             />
             <span
               className="m-3"
@@ -38,7 +36,7 @@ const TodoList: React.FC<TodoListProps> = ({
             <button
               className="btn btn-light float-right"
               type="button"
-              onClick={e => onDeleteTodo({type: DELETE_TODO_ACTION, data: todo.id})}
+              onClick={e => dipatchAction({type: DELETE_TODO_ACTION, data: todo.id})}
             >
               x
             </button>
