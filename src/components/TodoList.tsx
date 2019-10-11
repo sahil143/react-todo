@@ -1,10 +1,11 @@
 import * as React from "react";
-import { ToDo } from "../types";
+import { ToDo, TodoActionsType } from "../types";
+import { COMPLETE_TODO_ACTION, DELETE_TODO_ACTION } from "../constants";
 
 interface TodoListProps {
   todos: ToDo[];
-  onDeleteTodo: (id: string) => void;
-  onCompleteTask: (id: string) => void;
+  onDeleteTodo: React.Dispatch<TodoActionsType>
+  onCompleteTask: React.Dispatch<TodoActionsType>;
 }
 
 const completedStyles = {
@@ -26,7 +27,7 @@ const TodoList: React.FC<TodoListProps> = ({
               className="m-3"
               type="checkbox"
               checked={todo.completed}
-              onChange={e => onCompleteTask(todo.id)}
+              onChange={e => onCompleteTask({type: COMPLETE_TODO_ACTION, data: todo.id})}
             />
             <span
               className="m-3"
@@ -37,7 +38,7 @@ const TodoList: React.FC<TodoListProps> = ({
             <button
               className="btn btn-light float-right"
               type="button"
-              onClick={e => onDeleteTodo(todo.id)}
+              onClick={e => onDeleteTodo({type: DELETE_TODO_ACTION, data: todo.id})}
             >
               x
             </button>

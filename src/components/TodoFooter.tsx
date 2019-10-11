@@ -1,11 +1,13 @@
 import * as React from "react";
 import { FILTERS } from "../utils";
+import { TodoActionsType } from "../types";
+import { SET_ACTIVE_FILTER_ACTION, CLEAR_ALL_ACTION } from "../constants";
 
 export interface TodoFooterProps {
   activeFilter: string;
   leftTodos: number;
-  onActiveFilter: (filter: { id: string; text: string }) => void;
-  onClearAll: () => void;
+  onActiveFilter: React.Dispatch<TodoActionsType>;
+  onClearAll: React.Dispatch<TodoActionsType>;
 }
 
 const TodoFooter: React.FC<TodoFooterProps> = ({
@@ -25,13 +27,13 @@ const TodoFooter: React.FC<TodoFooterProps> = ({
               filter.id === activeFilter ? "active" : ""
             }`}
             key={filter.id}
-            onClick={e => onActiveFilter(filter)}
+            onClick={e => onActiveFilter({ type: SET_ACTIVE_FILTER_ACTION, data: filter.id })}
           >
             {filter.text}
           </button>
         ))}
       </div>
-      <span className="btn btn-link" onClick={onClearAll}>clear all</span>
+      <span className="btn btn-link" onClick={() => onClearAll({ type: CLEAR_ALL_ACTION,  data: '' })}>clear all</span>
     </footer>
   );
 };

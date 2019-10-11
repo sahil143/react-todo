@@ -17,3 +17,8 @@ export interface Filter {
   id: string;
   text: string;
 }
+
+export interface TodoActionsType {
+  type: string,
+  data: string,
+}
