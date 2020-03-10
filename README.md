@@ -1,5 +1,8 @@
 # A Simple Basic TODO App Built in React
 
+### TODO App
+![Screenshot](https://user-images.githubusercontent.com/9278015/76292341-0b939980-62d5-11ea-8d50-30cfce0f7193.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
