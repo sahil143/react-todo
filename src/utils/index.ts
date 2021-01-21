@@ -1,4 +1,4 @@
-import { NormalizedTodos, ToDo, Filter, NormalizedState, TodoActionsType } from '../types';
+import { NormalizedTodos, ToDo, NormalizedState, TodoActionsType } from '../types';
 import {
   ACTIVE_FILTER,
   COMPLETED_FILTER,
